@@ -1,4 +1,4 @@
-#import "@preview/ctheorems:1.1.2": *
+#import "@preview/ctheorems:1.1.3": *
 #import "@preview/physica:0.9.3": *
 #import "@preview/cetz:0.3.1"
 #import "@preview/cetz-plot:0.1.0"
@@ -11,6 +11,7 @@
 )
 
 #let teorema = thmbox("teorema", "Teorema")
+#let lema = thmbox("lema", "Lema")
 #let corolario = thmplain(
   "corolario",
   "Corolario",
