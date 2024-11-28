@@ -39,7 +39,7 @@ Sujeta a condiciones iniciales $u(x, 0) = g(x), u_t(x, 0)= h(x)$
 
 = Soluciones a la ecuación homogénea mediante medias esféricas
 
-Primero resolveremos la ecuación para dimensión 1 ($n = 1$), luego extenderemos el resultado mediante el _método de medias esféricas_.
+Primero resolveremos la ecuación para dimensión 1 ($n = 1$), luego extenderemos el resultado mediante el _método de medias esféricas_. En esta sección siempre trabajaremos con $U = RR^n$ completo.
 
 == Solución $n = 1$:
 
@@ -202,4 +202,44 @@ $
 es una solución a la ecuación de onda inhomogénea, $u in cal(C)^2(RR^n times [0, infinity))$.]
 
 = Métodos basados en energía:
+
+A medida que subimos la dimensión del problema pareceos necesitar condiciones iniciales cada vez más suaves para tener una solución $cal(C)^2$. Veremos que usando la energía podremos extraer resultados más naturales al respecto, partiendo por la unicidad de la solución.
+
+== Unicidad
+
+Cambiando un poco la notación para ahora trabajar con dominios espaciales con frontera no nula, es decir $U subset.neq RR^n$. Fijaremos también $U_T = U times (0, T], thick Gamma_T = overline(U)_T - U_T$. Esto es casi lo mismo que antes, sólo que ahora también hay una condición de borde en la frontera que puede depender del tiempo (imaginen a alguien haciendo mover la cuerda).
+
+#definición[Energía de una solución de la ec. de onda][Dado $omega$ que solucione la ecuación de onda, podemos definir su energía como:
+$
+  E_omega (t) := 1/2 integral_U omega_t^2 + norm(D omega)^2 dif x
+$
+]
+
+#propiedad[Si la ecuación de onda es homogénea, con velocidad inicial nula y condiciones de borde fijas (osea $g$ no es una función del tiempo jamasitas):
+$
+  partial_t E(t) &= 1/2 integral_U 2 omega_t omega_(t t) + 2 D omega dot partial_t D omega dif x \
+  &= integral_U omega_t w_(t t) + sum_i (omega_(x_i) w_(x_i t))
+$
+
+Integrando por partes el segundo término:
+
+$
+  &= integral_U omega_t omega_(t t) - integral_U omega_t Delta omega dif x + sum_i integral_(partial U) underbrace(omega_t, = 0 ", condiciones de borde fijas.") omega_x_i nu^i dif S \
+  &= integral_U omega_t (omega_(t t) - Delta omega) dif x
+  &= 0
+$
+
+Es decir, la energía es constante en el tiempo.
+]
+
+Esta última propiedad permite demostrar la unicidad de la solución. Se sigue directamente de la propiedad anterior aplicada sobre la resta de 2 soluciones, y la energía inicial es 0 pues coinciden en la condición de borde.
+
+== Dominio de dependencia
+
+Digamos que fijamos un punto en el espacio-tiempo $(x_0, t_0)$. Definimos su cono del pasado como $K(x_0, t_0) := {(x, t) | 0 <= t <= t_0, norm(x - x_0) <= t_0 - t}$.
+
+#teorema[Velocidad finita de propagación][Podemos demostrar que si $u eq.triple u_t eq.triple 0$ en $B(x_0, t_0)$ con $t = 0$, entonces $u eq.triple 0$ en todo el interior del cono del pasado.]
+
+Es decir, si tengo un radio donde sé que mi superficie está en reposo, si llega un random y me tira una perturbación, sé que _al menos_ le va a demorar un radio/velocidad en llegar a mi. En este caso matemático, la velocidad es 1 por eso la simplicidad de las expresiones.
+
 
