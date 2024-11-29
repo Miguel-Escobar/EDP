@@ -148,7 +148,7 @@ Ahora queremos ver cuándo esta función está efectivamente en $L^p$. Podemos r
 
 == Teoremas de aproximación
 
-=== Pequeño recuerdo de molificadores:
+*Pequeño recuerdo de molificadores:*
 
 Dado $U subset RR^n$ abierto, denotamos $U_epsilon := {x in U | op("dist")(x, partial U ) > epsilon}$. Podemos definir un molificador $eta_epsilon in C^infinity(RR^n)$ como:
 
@@ -167,4 +167,101 @@ $
 A esta función le restringimos su dominio a $U_epsilon$
 ]
 
-#propiedad
+#propiedad[
+  + $f^epsilon in C^infinity(U_epsilon)$
+  + $f^epsilon arrow.r f$ c.t.p cuando $epsilon arrow.r 0$
+  + $f in C(U) implies $ la convergencia de $f^epsilon arrow.r f$ es uniforme en compactos.
+]
+
+*fin recuerdo molificadores*
+
+#teorema[Aproximación por molificación][Si tenemos una función sobolev $u in W^(k, p) (U)$ _con $p$ finito_. Entonces los molificadores $u^epsilon = eta_epsilon * u$ definidos en $U_epsilon$ no sólo son suaves, sino que también convergen localmente en la norma de Sobolev.]
+
+#dem[Es suave pues la derivada de la convolución se la puedo pasar al molificador. Converge localmente pues podemos tirar las derivadas débiles al $u$ ]
+
+#teorema[Aproximación por funciones suaves][*Asumiendo que el dominio U es acotado*, y nuevamente que $p$ es finito, entonces existen funciones $u_m$ suaves y Sobolevs del mismo orden que $u$ tal que $u_m arrow.r u$. Aquí, no tenemos ningún presupuesto sobre la frontera de $U$.]
+
+#dem[
+  Marciana...
+]
+
+#teorema[Aproximación por funciones suaves en la cerradura del dominio][*Asumiendo U acotado y $partial U$ es $C^1$*. Nuevamente, $p$ debe ser finito. Entonces existen funciones $u_m in C^infinity(overline(U))$ _suaves sobre la cerradura de U_ tales que aproximan $u$ con la norma de Sobolev.]
+
+== Extensiones
+
+Muchas veces será util considerar la extensión de una función sobolev en un dominio $U$ a sobolev en todo $RR^n$.
+
+#teorema[Teorema de Extensión][Asumir que el dominio de partida $U$ es acotado y $C^1$, y además, que hay un conjunto abierto acotado $V$ que lo contiene compactamente. Entonces, si $u in W^(1, p) (U)$, existe una extensión $v in W^(1, p) (RR^n)$ tal que $v = u$ c.t.p en $U$, el soporte de $v$ está contenido en $V$ y además $norm(v)_(W^(1, p) (RR^n)) <= C norm(u)_(W^(1, p) (U))$. Más aún, el operador que asocia a cada $u$ su extensión $v$ es un operador lineal acotado.]
+
+#dem[En verdad voy a comentar nomás la demostración:
+
+- Primero, suponemos que el borde es planito. La idea es que después podemos relajar esto porque el borde es $C^1$.
+
+- Aquí, podemos trabajar con una bolita justo en la frontera, y considerar la reflexión de $u$ en el borde.
+
+- De ahí, podemos darnos cuenta que la norma de la extensión es simplemente una constante multiplicada por la norma de $u$ en la parte donde está bien definida.
+
+- Desdoblamos la frontera usando un truco de composición nomás.
+
+- Extendemos la extensión a todo $RR^n$ usando un recubrimiento finito de abiertos sobre la frontera, con las extensiones asociadas, y multiplicamos cada una por una partición de la unidad subordinada a esos abiertos. Esto nos permite ganar.
+]
+
+#obs[Si el borde es $C^2$, también podemos extender las funciones a $W^(2, p)(RR^n)$]
+
+== Traza
+
+#teorema[Traza][Supongamos $U$ acotado y $C^1$. Entonces, existe un operador lineal continuo (u acotado) tal que:
+$
+  T : W^(1, p) (U) arrow.r L^p (partial U)
+$
+
+- Además, si $u$ es continua hasta la frontera (incluida), $T u = u|_(partial U)$.
+- Y para cualquier u: $norm(T u)_(L^p (partial U)) <= C norm(u)_(W^(1, p) (U))$
+]
+
+A este operador lo llamamos la "traza" de u.
+
+#teorema[Funciones con traza 0][Sea $U$ *acotado y $partial U$ $C^1$*. Entonces, si $u in W^(1, p)_0 (U)$ tenemos la siguiente equivalencia:
+$
+  u in W_0^(1, p) (U) iff T u = 0
+$]
+
+== Desigualdades de Sobolev
+
+La idea es que queremos saber cuando una función de Sobolev automáticamente está en algún otro espacio de Sobolev u $L^p$, lo que salga. Así que démosle, escupamos factos.
+
+Para el primer resultado de este tipo, quisieramos saber si las normas de las derivadas nos pueden decir algo sobre las normas de lo no derivado. En específico, quisieramos saber cuándo $norm(u)_(L^q (RR^n)) <= C norm(D u)_(L^p (RR^n))$. Resulta que si consideramos que se cumpla, entonces necesariamente obtenemos algunas restricciones al tomar funciones tipo $u_lambda (x) := u(lambda x)$. Aquí, inmediatamente vemos que obtendríamos contradicciones si $1 - n/q + n/q != 0$. Entonces necesariamente $q = (n p)/(n - p)$. Formalicemos todo esto en un teorema:
+
+#teorema[Gagliardo-Nirenberg-Sobolev][Asumamos que $1 <= p < n$. Entonces se cumple que para toda función $u in C^1_c(RR^n)$:
+$
+  norm(u)_(L^p^* (RR^n)) <= C norm(D u)_(L^p (RR^n))
+$
+
+Donde $p^* = (n p)/(n - p)$ es el conjugado de Sobolev de $p$ que pillamos antes.
+]
+
+#teorema[Estimadores para W^(1, p)][Si U es un conjunto abierto y acotado $subset RR^n$, y con frontera $C^1$. Asumamos que $p<n$. Entonces, para toda función $u in W^(1, p) (U)$ se cumple que $u in L^(p^*) (U)$, con una cota sobre la norma:
+
+$
+  norm(u)_(L^(p^*) (U)) <= C norm(u)_(W^(1, p) (U))
+$
+]
+
+#teorema[Estimadores para $W_0^(1, p), 1 <= p < n$][Ahora los supuestos son $U$ un abierto acotado, y $u in W_0^(1, p) (U)$. Ahora la desigualdad es:
+$
+  norm(u)_(L^(q) (U)) <= C norm(D u)_(L^p (U))
+$
+
+Ahora *para cualquier $q in [1, p^*]$*. En particular:
+$
+  norm(u)_(L^(p) (U)) <= C norm(D u)_(L^p (U))
+$
+
+Esto también se conoce como la _desigualdad de Poincaré_]
+
+#teorema[Desigualdad de Morrisey][Ahora, si *$n < p <= infinity$*, entonces TAMBIÉN hay una desigualdad útil. En este caso es con la norma cochina de los Hölder. Es decir, para todo $u in C^1 (RR^n)$, entonces:
+$
+  norm(u)_(C^(0, gamma)) <= C norm(u)_(W^(1, p) (RR^n))
+$
+
+Aquí, *NECESARIAMENTE $gamma = 1 - n/p$*]
