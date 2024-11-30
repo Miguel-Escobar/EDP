@@ -100,11 +100,11 @@ Ahora, podemos tomar algunos límites que nos anulen el lado izquierdo pero mant
 
 == Definición del espacio de Sobolev
 
-#definición[Espacio de Sobolev][Definimos el espacio de Sobolev $W^(k, p) (U)$ como el conjunto de funciones tales que todas sus derivadas débiles hasta el orden $k$ existen y además pertenecen a $L^p(U)$.]
+#definición[Espacio de Sobolev][Definimos el espacio de Sobolev $W^(k, p) (U)$ como el conjunto de funciones tales que todas sus derivadas débiles hasta el orden $k$ existen y además pertenecen a $L^p (U)$.]
 
 #definición[Norma del espacio de Sobolev][Definimos la norma del espacio de Sobolev como:
 $
-  norm(u)_(W^(k, p) (U)) := sum_(abs(alpha) <= k) (norm(D^alpha u)_(L^p(U))^p)^(1/p)
+  norm(u)_(W^(k, p) (U)) := (sum_(abs(alpha) <= k) norm(D^alpha u)_(L^p(U))^p)^(1/p)
 $]
 
 #definición[Localmente Sobolev][$u in W_"loc"^(k, p) (U)$ ssi $forall V subset U$, $V$ contenido en un compacto en $U$, $u in W^(k, p) (V)$]
@@ -185,7 +185,7 @@ A esta función le restringimos su dominio a $U_epsilon$
   Marciana...
 ]
 
-#teorema[Aproximación por funciones suaves en la cerradura del dominio][*Asumiendo U acotado y $partial U$ es $C^1$*. Nuevamente, $p$ debe ser finito. Entonces existen funciones $u_m in C^infinity(overline(U))$ _suaves sobre la cerradura de U_ tales que aproximan $u$ con la norma de Sobolev.]
+#teorema[Aproximación por funciones suaves en la cerradura del dominio][*Asumiendo U acotado y $partial U$ es $C^1$*. Nuevamente, $p$ debe ser finito. Entonces existen funciones $u_m in C^infinity (overline(U))$ _suaves sobre la cerradura de U_ tales que aproximan $u$ con la norma de Sobolev.]
 
 == Extensiones
 
@@ -232,7 +232,7 @@ La idea es que queremos saber cuando una función de Sobolev automáticamente es
 
 Para el primer resultado de este tipo, quisieramos saber si las normas de las derivadas nos pueden decir algo sobre las normas de lo no derivado. En específico, quisieramos saber cuándo $norm(u)_(L^q (RR^n)) <= C norm(D u)_(L^p (RR^n))$. Resulta que si consideramos que se cumpla, entonces necesariamente obtenemos algunas restricciones al tomar funciones tipo $u_lambda (x) := u(lambda x)$. Aquí, inmediatamente vemos que obtendríamos contradicciones si $1 - n/q + n/q != 0$. Entonces necesariamente $q = (n p)/(n - p)$. Formalicemos todo esto en un teorema:
 
-#teorema[Gagliardo-Nirenberg-Sobolev][Asumamos que $1 <= p < n$. Entonces se cumple que para toda función $u in C^1_c(RR^n)$:
+#teorema[Gagliardo-Nirenberg-Sobolev][Asumamos que $1 <= p < n$. Entonces se cumple que para toda función $u in C^1_c (RR^n)$:
 $
   norm(u)_(L^p^* (RR^n)) <= C norm(D u)_(L^p (RR^n))
 $
