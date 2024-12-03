@@ -25,7 +25,7 @@
 
 
 #align(center, [#text(30pt)[
-  Ecuación de Onda] \ #text(13pt)[Mecánica Cuántica II]
+  Ecuación de Onda] \ #text(13pt)[Ecuaciones en Derivadas Parciales]
 ])
 
 = Definición de la ecuación de onda
