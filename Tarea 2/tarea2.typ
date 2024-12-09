@@ -214,9 +214,93 @@ Con esto, finalmente sí concluimos lo pedido.
 
 == Conclusión:
 
-Se me tiene que ocurrir una familia regularizadora que se parezca a $u_lambda$. Bueno, la idea que se me ocurre es tomar funciones que sean suaves en un abierto que contenga a $overline(U)$ (como $lambda^(-1) U$), y tirar un límite diagonal con el $lambda arrow 1$. Por mientras, dejaré esta idea porque no tengo claro cómo justificaría el límite cruzado, y el tiempo apremia.
+Se me tiene que ocurrir una familia regularizadora que se parezca a $u_lambda$. Bueno, la idea que se me ocurre es tomar funciones que sean suaves en un abierto que contenga a $overline(U)$ (como $lambda^(-1) U$), y tirar un límite diagonal con el $lambda arrow 1$.
+
+Concretamente, tenemos que dado $u in W^(k, p) (U)$ podemos encontrar una sucesión de funciones $ (g_m)_(m in NN) subset C^infinity (U) sect W^(k, p) (U)$ que aproxima $u$. Luego, consideremos una segunda sucesión $(lambda_n)_(n in NN) subset (0, 1)$ monótona creciente a $1$. La idea será mostrar que la sucesión en $C^infinity (overline(U))$ que aproxime a $u$ será $lim_(n arrow oo) (g_n)_lambda_n|_(overline(U))$, que denominaré más concisamente $u_n$.
+
+Observemos que esto está bien definido pues al ser $U$ estrellado (y por tanto todo conjunto $alpha U, alpha >0$ también), entonces $overline(U) subset lambda^(-1) U, thick forall lambda in (0, 1)$. Esto se sigue de que $lambda^(-1) U $ es estrellado, y aplicar la definición de esto sobre $U = lambda (lambda^(-1) U)$ con $lambda in (0, 1)$. Por composición, $(g_n)_lambda$ es $C^infinity (lambda^(-1) U)$, luego efectivamente $overline(U)$ está contenido en su dominio, y por tanto la restricción está bien hecha.
+
+Ahora, veamos que efectivamente converge a $u$.
+
+$
+  norm(u_n - u)_(W^(k, p) (U)) &= norm(u_n - u_lambda_n + u_lambda_n - u)_(W^(k, p) (U)) \
+  &<= norm(u_n - u_lambda_n)_(W^(k, p) (U)) + norm(u_lambda_n - u)_(W^(k, p) (U))
+$
+
+El término de la derecha se hace 0 al tender n a infinito por la parte anterior. Sobrevive ese término de la izquierda más raro. Para esto, bastaría que $forall abs(alpha) <= k$, $D^alpha u_n arrow_(L^p (U)) D^alpha u_lambda_n$:
+
+$
+  D^alpha u_lambda_n = lambda_n^abs(alpha) (D^alpha u)_lambda_n &and D^alpha u_n = lambda_n^abs(alpha) (D^alpha g_n)_lambda_n \
+
+  implies integral_U abs(D^alpha u_n - D^alpha u_lambda_n)^p dif x &= lambda_n^abs(alpha) integral_U abs( (D^alpha g_n)_lambda_n - (D^alpha u)_lambda_n)^p dif x \
+  &= lambda_n^abs(alpha) integral_(lambda_n U) abs( (D^alpha g_n)_lambda_n - (D^alpha u)_lambda_n)^p (dif y)/lambda_n^N arrow " N es la dim."\
+  &= lambda_n^abs(alpha - N) integral_U abs( (D^alpha g_n)_lambda_n - (D^alpha u)_lambda_n)^p dif y arrow_(n arrow oo) 0
+$
+
+¡No se diga más! Encontramos entonces la sucesión regular que converge a $u$. (Supongo que a eso se refiere con la familia regularizadora, eso no me quedó claro). Luego, concluimos que $C^infinity (overline(U))$ es denso en $W^(k, p) (U)$.
+
 
 = Items varios
 
+Aviso a quien corrija: El sueño me está matando así que no voy a poder limpiar mucho estas soluciones de las cosas que fui escribiendo mientras intentaba que salgan las cosas. ¡Lo siento!
+
 == ¿Fourier sirve post control 1?
 
+¿Aquí me falta una norma sobre $B^k$ para poder mostrar continuidad no? Quizás lo natural sería usar la suma de las normas infinito de las derivadas, ya que no necesariamente son integrables sus miembros. Creo que esa es la más decentemente aplicable, pero no sé si lo hace un espacio completo. ¿Esperaría que sí? Lo otro es que esté puro leseando a ver, esque se me fueron algunas de las propiedades de Fourier. Bueno por ahora apliquemosle a la matraca. Lo que si recuerdo es que $forall abs(alpha ) <= s$. Shorthand: $norm(dot)_(L^2 (RR^n)) = norm(dot)$, $norm(dot)_h := norm(dot)_(H^s (RR^n))$
+
+$
+  norm(D^alpha u)_1 &= norm(hat(D^alpha u))_1 \
+  &= (2 pi)^(abs(alpha)) norm(xi^alpha hat(u)) arrow " ojo aquí que es con multiíndice el xi"\
+  &= C norm(xi^alpha hat(u)) \
+  &= C integral_(RR^n) abs(xi^alpha hat(u)) dif xi \
+  &= C integral_(RR^n) abs(xi^alpha) abs(hat(u)) dot (1 + abs(xi)^2)^(s/2) / (1 + abs(xi)^2)^(s/2)dif xi \
+  &<= C integral_(RR^n) (1 + abs(xi)^2)^(s/2) abs(hat(u))^2 dif xi integral_(RR^n) abs(xi^alpha)^2 / (1 + abs(xi)^2)^(s/2) dif xi arrow " Desigualdad de Hölder"\
+$
+
+Ya no les voy a mentir estoy intentando seguir el Folland. Para tomarme un atajo usaré un facto que tiene: La norma $norm(u)_h$ es equivalente a la norma $norm((1 + abs(xi)^2)^(s/2) hat(u))$. Uff no la verdad es que no logro ver cómo nada de esto me ayudaría a que la cosa sea continua por ejemplo. Me ganó este ejercicio lamento admitir ¿puntitos por el intento?
+
+== Cotas cotas cotas
+
+Vimos en clase que para en el caso particular de $RR^n$, $H_0^1 (RR^n) = H^1 (RR^n)$. Luego, puedo usar aproximación por funciones test. Tomemos una sucesión aproximante $u_m$. Observemos entonces que para todo $m$ va a haber una bola abierta que contenga a su soporte. Usaré el siguiente teorema del Evans:
+
+#teorema[Desigualdad de Hardy][Dado $n >= 3$, $r>0$ y $u in H^1(B(0, r))$. Entonces:
+$
+  integral_(B(0, r)) abs(u)^2/norm(x)^2 dif x <= C ( integral_(B(0, r)) abs(D u)^2 dif x +  1/r^2 integral_(B(0, r)) u^2 dif x )
+$
+]
+#dem[
+  Dado el uso que le quiero dar, me bastará demostrarlo para funciones $C_0^infinity$. A matraquear, con u test:
+$
+  integral_(B(0, r)) u^2/norm(x)^2 dif x &= integral_(B(0, r)) u^2 x/norm(x) dot x/norm(x)^3 dif x \
+  &= -integral_(B(0, r)) u^2 x/norm(x) dot D (1/norm(x)) dif x \
+  &= integral_B(0, r) 2 u D u dot x/norm(x)^2 + (n - 1) u^2 /x^2 dif x
+$
+
+Juntamos los términos:
+$
+  (2 - n) integral_(B(0, r)) u^2/norm(x)^2 dif x &= 2integral_(B(0, r)) u D u dot x/norm(x)^2 dif x <= 2 norm((norm(D u)))_2^2 norm(u x / norm(x)^2)_2^2\
+$
+
+Donde concluimos:
+$
+  integral_(B(0, r)) u^2/norm(x)^2 dif x <= C ( integral_(B(0, r)) abs(D u)^2 dif x )
+$
+
+Para u función test que es lo que me interesa.
+]
+
+Entonces, tenemos que la desigualdad se cumple para cada $u_m$. Trivialmente, podemos extender los dominios de integración a todo $RR^n$ pues en virtud de la compacidad del soporte de $u_m$ estamos sólo sumando 0. Ahora a ambos lados de la desigualdad calculemos los límites $m arrow infinity$. Inmediatamente el RHS converge a $C integral_(RR^n) abs(D u)^2 dif x$ dado a que $u_m$ aproxima a $u$ en el espacio de Sobolev. Falta sólo justificar el LHS:
+
+$
+  lim_(m arrow infinity) integral_(RR^n) u_m^2/norm(x)^2 dif x = integral_(RR^n) lim_(m arrow infinity) u_m^2 x/norm(x)^2 dif x = integral_(RR^n) u^2/norm(x)^2 dif x
+$
+
+Donde usé el TCD sobre una subsucesión de $u_m$ (que renombro igual) que converge puntualmente c.t.p a $u$ y está dominada por una función en $L^2$. Con esto, concluimos que la desigualdad de Hardy se cumple para $u in H^1 (RR^n)$.
+
+
+No me da para más items estoy rip ¡Lo siento!
+
+#figure(
+  image("yamcha.png"),
+  caption: [Yo, muricido por tarea 2 P3 EDP.]
+)
