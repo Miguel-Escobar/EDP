@@ -1,4 +1,4 @@
-#import "../../preamble.typ": *
+#import "../preamble.typ": *
 
 #set text(
   font: "JetBrainsMono NF",
