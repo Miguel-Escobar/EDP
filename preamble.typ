@@ -49,3 +49,9 @@
 #let iff = [$<=>$]
 
 #let colMath(x, color) = text(fill: color)[$#x$]
+
+#let bloque(BlockText, Titulo: none) = {[
+  *#Titulo*
+  #block(stroke: textcolors.at(2), inset: 1em)[#BlockText]
+]
+}
