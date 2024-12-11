@@ -70,7 +70,61 @@ Esta implicancia sale *muy* rápido si recordamos el teorema de representación 
 
 #teorema[Representación de Riesz][Sea $1 <= p < oo$. Sea $f in (L^p (Omega))^star$. Entonces existe un único $v in L^(p^*) (Omega)$ tal que $f(phi) = integral_Omega v phi dif x$ para todo $phi in L^(p^*) (Omega)$. Además, $norm(f) = norm(v)_(L^(p^*) (Omega))$.]
 
-Observando que la hipótesis es que el funcional lineal definido por $angle.l F, phi angle.r = integral_Omega u phi_x_i dif x$ es continuo en un subespacio denso de $L^p^* (Omega)$, que además cumple $1 <= p^* < oo$, entonces podemos extender mediante el teorema de Hahn-Banach a un elemento del dual que coincide para las $C^oo_c (Omega) subset L^p^* (Omega)$ (Recordemos que Hahn Banach es aplicable en funcionales sobre subespacios vectoriales continuos, pues la seminorma la podemos tomar efectivamente como la norma. Esto nos da continuidad para el funcional extendido, y si es un denso, entonces podemos obtener los otros valores tomando límites convenientes). Aplicamos Riesz, y obtenemos la definición de la derivada débil además con su norma ahí definida  (la última frase del eneunciado).
+Observando que la hipótesis es que el funcional lineal definido por $angle.l F, phi angle.r = integral_Omega u phi_x_i dif x$ es continuo en un subespacio denso de $L^p^* (Omega)$, que además cumple $1 <= p^* < oo$, entonces podemos extender mediante el teorema de Hahn-Banach a un elemento del dual que coincide para las $C^oo_c (Omega) subset L^p^* (Omega)$ (Recordemos que Hahn Banach es aplicable en funcionales sobre subespacios vectoriales continuos, pues la seminorma la podemos tomar efectivamente como la norma. Esto nos da continuidad para el funcional extendido, y si es un denso, entonces podemos obtener los otros valores tomando límites convenientes). Aplicamos Riesz, y obtenemos la definición de la derivada débil además con su norma ahí definida  (la última frase del enunciado).
 
-== Pendiente: Sacar la (3)
+== Quíen implica 3 a ver...
+
+Para demostrar 3) trabajemos un poco a lo que debieramos llegar para saber si se nos ilumina un poco el camino:
+
+$
+  norm(tau_h u - u )_(L^p (U))^p &= integral_U abs(tau_h u - u)^p dif x \
+  &= integral_U abs(u(x + h) - u(x))^p dif x
+$
+Mis instintos de física me gritan que use Taylor, pero el tema es que no estamos sacando derivadas en si. Pero bueno, algo podría salir si meto la definición y capaz ahí puedo acotar inteligentemente.
+
+$
+  integral_U abs(u(x + h) - u(x))^p dif x &= integral_U abs((u(x + h) - u(x))/h)^p abs(h)^p dif x \
+  &= abs(h)^p integral_U abs((u(x + h) - u(x))/h)^p dif x
+$
+
+Ahora quedaría acotar esa integral. Ok veamos si esto iba bien en el brezis. Okey no, el cambio de variable que puedo usar tal que esto sea más sencillo utiliza 2 cosas:
+
+1. Asumir que $u in C^oo_c (Omega)$, luego extenderemos el resultado a $L^p (Omega)$.
+
+2. Definimos una derivada para la traslación. Para esto primero hay que parametrizar cuanto uno se traslada. Esto escrito en simple es definirse:
+
+$
+  nu: [0, 1] -> RR \
+  nu(t) = u(x +t h)
+$
+
+Notemos que esto está bien definido pues $x + t h$ en $Omega$ gracias a la restricción sobre $h$. Además como suponemos $u in C^oo_c (Omega)$, podemos llegar y aplicar derivadas y todo. La idea entonces es usar el TFC.
+
+$
+  abs(u(x + h) - u(x))^p &= abs(integral_0^1 nu'(t) dif t)^p \
+  &= abs(integral_0^1 grad u(x + t h) dot h dif t)^p 
+  \ &<= abs(h)^p integral_0^1 norm(grad u(x + t h))^p dif t
+$
+
+Con lo que nuestro objeto de interés quedaría:
+
+$
+  norm(u(x + h) - u(x))_(L^p (U))^p <= abs(h)^p integral_U integral_0^1 norm(grad u(x + t h))^p dif t dif x
+$
+
+Ahora estamos casi listos para relacionar el lado derecho con la norma de $grad u$ en $L^p (Omega)$ (entonces nos damos cuenta que conviene usar la hipótesis (1)). Para hacer eso necesitamos volver a $grad u (y)$ en vez del $x + t h$ que definimos antes. Para eso, el Brezis usa Fubini. ¿Por qué podemos usar Fubini? Pues por hipótesis de continuidad la integral sobre $t$ es finita para todo $x$, y también por hipótesis de compacidad, $norm(grad u (x + t h))^p$ alcanza un máximo que lo define el hecho de que $norm(grad u)^p$ es continua, soporte compacto. Al estar $U$ contenido en un compacto, entonces tiene medida finita. Por esto, ambas integrales necesarias para Fubini son finitas, y podemos aplicar.
+
+$
+  integral_U integral_0^1 norm(grad u(x + t h))^p dif t dif x = integral_0^1 integral_U norm(grad u(x + t h))^p dif x dif t
+$
+
+Ahora esa cochinada de adentro podemos hacerle un cambio de variable. Sea $y = x + t h$. Luego:
+$
+  integral_0^1 integral_U norm(grad u(x + t h))^p dif x dif t = integral_0^1 integral_(U + t h) norm(grad u(y))^p dif y dif t
+$
+
+Recordemos que un supuesto sobre $norm(h)$ es que es menor que la distancia de $U$ al complemento de $Omega$. Esto nos permite decir que $U + t h subset Omega$ para todo $t$. Luego, podemos acotar la integral por la norma de $grad u$ en $L^p (Omega)$, y así quitamos la dependencia de t, por lo que esa integral evalúa 1 nomás. Así, finalmente obtenemos lo pedido:
+$
+  norm(u(x + h) - u(x))_(L^p (U))^p <= abs(h)^p norm(grad u)_(L^p (Omega))^p
+$
 ]
