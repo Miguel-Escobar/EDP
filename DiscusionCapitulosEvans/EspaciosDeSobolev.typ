@@ -92,10 +92,10 @@ $
 
 Ojo que $phi(2)$ es 0 pues consideramos funciones test dentro del dominio, que es un abierto. Luego siempre son 0 en los bordes. La integral entonces nos dice que
 $
-  integral_0^2 v phi dif x - integral_0^1 phi dif x = phi(1)
+  integral_0^2 v phi dif x - integral_0^1 phi dif x = 2 phi(1)
 $
 
-Ahora, podemos tomar algunos límites que nos anulen el lado izquierdo pero mantengan el derecho. El límite que toma el Evans es $0 <= phi_m <= 1, phi_m(1) = 1, phi_m (x != 1) arrow.r 0$. Naturalmente entonces, por teorema de convergencia dominada podemos concluir que el lado izquierdo integra a 0, mientras que el derecho se mantiene en 1. Una contradicción.
+Ahora, podemos tomar algunos límites que nos anulen el lado izquierdo pero mantengan el derecho. El límite que toma el Evans es $0 <= phi_m <= 1, phi_m (1) = 1, phi_m (x != 1) arrow.r 0$. Naturalmente entonces, por teorema de convergencia dominada podemos concluir que el lado izquierdo integra a 0, mientras que el derecho se mantiene en 1. Una contradicción.
 ]
 
 == Definición del espacio de Sobolev

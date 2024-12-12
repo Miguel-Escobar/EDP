@@ -2,6 +2,7 @@
 #import "@preview/physica:0.9.3": *
 #import "@preview/cetz:0.3.1"
 #import "@preview/cetz-plot:0.1.0"
+#import "@preview/xarrow:0.3.1": xarrow
 
 #let (backgroundcolor, headingcolors, textcolors, tablecolor) = (
   rgb("#282A36"),
