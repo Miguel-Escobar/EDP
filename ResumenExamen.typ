@@ -148,6 +148,56 @@ $
 + *Representación:*
   Si $f in C^2_c (RR^n), n gt.eq 3$. Entonces cualquier solución acotada de $-laplace u eq f$ en $RR^n$ es de la forma $u = Phi * f + c$ con $c in RR$.
 
++ *Desigualdad de Harnack:*
+  Para cada abierto conexo $V subset.eq K subset.eq U$ con $K$ compacto, existe $C(V)gt 0$ tal que $sup_V u lt.eq C inf_V u$ para toda $u$ armónica no negativa.
+  En concreto, para $x,y in V$ se cumple $1/C u(y) lt.eq u(x) lt.eq C u(y)$.
+
++ *Función de Green:*
+  Queremos obtener una formula de representación para
+  $
+    cases(
+      -laplace u = f &quad "en" U,
+      u = g &quad "en" partial U
+    )
+  $
+  Para ello, para un $x$ fijo buscamos la función corrector como la solución a
+  $
+    cases(
+      -laplace phi.alt^x = 0 &quad "en" U,
+      phi.alt^x = Phi(y - x) &quad "en" partial U
+    )
+  $
+  Con esto definimos la función de Green para la región $U$
+  $
+    G(x,y) colon.eq Phi(y-x) - phi.alt^x (y) quad (x eq.not y)
+  $
+
++ *Representación usando Green:*
+  Si $u$ resuelve el IVP anterior, entonces
+  $
+    u(x) = - integral_(partial U) g(y)(partial G)/(partial nu)(x,y) dif S(y) + integral_U f(y)G(x,y) dif y 
+  $
+
++ *Simetría de Green:* 
+  Para todo par $x,y in U$ distintos, $G(x,y) = G(y,x)$ 
+
++ *Green para el semiespacio positivo $(RR^n_+)$:*
+  Si definimos $tilde(x) = (x_1, x_2, dots, -x_n)$ entonces la función de Green para el semiespacio positivo es $G(x,y) = Phi(y-x) - Phi(y-tilde(x))$ para $x,y in RR^n_+$. Por lo que la representación de la solución es 
+  $
+    u(x) = (2x_n)/(n alpha(n)) integral_(partial RR^n_+) (g(y))/(abs(x-y)^n) dif y
+  $
+
++ *Green para la bola unitaria:* Si $x in RR^n - {0}$, definimos $tilde(x) = x/abs(x)^2$, 
+  la función de green será $G(x,y) eq Phi(y-x) - Phi(abs(x) (y-tilde(x)))$, con lo que la solución se representa por
+  $
+    u(x) eq (1-abs(x)^2)/(n alpha(n)) integral_(partial B(0, 1)) (g(y))/(abs(x-y)^n) dif S(y)
+  $
+
++ *Solución para $B(0, r)$:* Se define 
+  $ u_r (x) = (r^2-abs(x)^2)/(n alpha(n) r) integral_(partial B(0, r)) g(y)/(abs(x-y)^n) dif S(y) $
+  Entonces $u_r$ es armónica en $B(0, r)$ y $lim_(x -> x_0 \ x in B_0 (0,r)) u_r (x) = g(x_0)$ para $x_0 in partial B(0,r)$
+
+
 
 = Ecuación de Calor:
 
