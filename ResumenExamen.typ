@@ -17,7 +17,6 @@
 #set par(justify: true)
 #set table(stroke: tablecolor)
 
-
 = Cálculo:
 + *Teorema Gauss-Green:* 
   - $integral_U u_(x_i) dif x &eq integral_(partial U) u nu^i dif S quad (i eq 1,dots,n)$
@@ -89,40 +88,143 @@ $
 
 = Transformada de Fourier:
 
+#definición[Transformada en $L^1$][
+  Para $f in L^1 (RR^n)$, definimos la transformada de Fourier como $ 
+  && hat(f) (xi) colon.eq integral_(RR^n) f(x) e^(-2pi i x dot xi) dif x
+  $
+]
+
+
+
 = Ecuación de Laplace:
+
++ *Ecuación de Poisson:* 
+  Las ecuaciones $laplace u = 0$ y $-laplace u = f$ se llaman ecuaciones de Laplace y Poisson respectivamente. Se busca resolver para $u: overline(U) -> RR$ con $U$ abierto en $RR^n$.
+  Las soluciones $C^2$ a Laplace se llaman armónicas.
+
++ *Solución fundamental:*
+  La función
+  $
+    Phi(x) colon.eq cases(
+      -1/2pi log(abs(x)) &quad n=2,
+      1/(n(n-2)alpha(n)) |x|^(2-n) &quad n gt 2
+    )
+  $
+  definida en $RR^n "/" {0}$ es la solución fundamental a la ecuación de Laplace.
+
++ *Solución a Poisson:*
+  Si $f in C^2_c (RR^n)$, entonces $u(x) colon.eq Phi * f = integral_(RR^n) Phi(x-y) f(y) dif y in C^2 (RR^n)$ es solución de $- Delta u = f$ en $RR^n$
+
+
++ *Fórmula de la media:*
+  La función $u$ es armónica ssi para toda bola $B(x, r) subset.eq U$ se cumple 
+  $
+    u(x) eq integral.dash_(partial B(x, r)) u(y) dif S(y) eq integral.dash_B(x, r) u(y) dif y
+  $
+
++ *Principios del máximo:*
+  Sea $U$ acotado y $u in C^2 (U) sect C^0 (overline(U))$ solución de $- Delta u = 0$ en $U$. Entonces:
+  - $max_overline(U) u = max_(partial U) u$
+  - Además, si $U$ es conexo y existe $x_0 in U$ tal que $u(x_0) = max_overline(U) u$, entonces $u$ es constante en $U$
+  Se deduce un principio del mínimo, ya que $-u$ es armónica también.
+
++ *Unicidad:*
+  Si $g in C^0(partial U), f in C^0 (U)$ entonces a lo mas existe una solución $u in C^2 (U) sect C^0 (overline(U))$ de $- Delta u = f$ en $U$ y $u = g$ en $partial U$
+
+
++ *Regularidad:*
+  Si $u in C^0(U)$ satisface la fórmula de la media para toda bola, entonces $u in C^oo$ (mas aún es analítica)
+
+
++ *Estimaciones en derivadas:*
+  Si $u$ es armónica en $U$, entonces $ abs(D^alpha u(x_0)) lt.eq (C_k)/(r^(n+k)) norm(u)_(L^1 (B(x_0, r))) quad (abs(alpha) = k;B(x_0, r)subset.eq U) $
+
+
++ *Liouville:*
+  Si $u: RR^n -> RR$ es armónica y acotada, entonces $u$ es constante.
+
+
++ *Representación:*
+  Si $f in C^2_c (RR^n), n gt.eq 3$. Entonces cualquier solución acotada de $-laplace u eq f$ en $RR^n$ es de la forma $u = Phi * f + c$ con $c in RR$.
+
++ *Desigualdad de Harnack:*
+  Para cada abierto conexo $V subset.eq K subset.eq U$ con $K$ compacto, existe $C(V)gt 0$ tal que $sup_V u lt.eq C inf_V u$ para toda $u$ armónica no negativa.
+  En concreto, para $x,y in V$ se cumple $1/C u(y) lt.eq u(x) lt.eq C u(y)$.
+
++ *Función de Green:*
+  Queremos obtener una formula de representación para
+  $
+    cases(
+      -laplace u = f &quad "en" U,
+      u = g &quad "en" partial U
+    )
+  $
+  Para ello, para un $x$ fijo buscamos la función corrector como la solución a
+  $
+    cases(
+      -laplace phi.alt^x = 0 &quad "en" U,
+      phi.alt^x = Phi(y - x) &quad "en" partial U
+    )
+  $
+  Con esto definimos la función de Green para la región $U$
+  $
+    G(x,y) colon.eq Phi(y-x) - phi.alt^x (y) quad (x eq.not y)
+  $
+
++ *Representación usando Green:*
+  Si $u$ resuelve el IVP anterior, entonces
+  $
+    u(x) = - integral_(partial U) g(y)(partial G)/(partial nu)(x,y) dif S(y) + integral_U f(y)G(x,y) dif y 
+  $
+
++ *Simetría de Green:* 
+  Para todo par $x,y in U$ distintos, $G(x,y) = G(y,x)$ 
+
++ *Green para el semiespacio positivo $(RR^n_+)$:*
+  Si definimos $tilde(x) = (x_1, x_2, dots, -x_n)$ entonces la función de Green para el semiespacio positivo es $G(x,y) = Phi(y-x) - Phi(y-tilde(x))$ para $x,y in RR^n_+$. Por lo que la representación de la solución es 
+  $
+    u(x) = (2x_n)/(n alpha(n)) integral_(partial RR^n_+) (g(y))/(abs(x-y)^n) dif y
+  $
+
++ *Green para la bola unitaria:* Si $x in RR^n - {0}$, definimos $tilde(x) = x/abs(x)^2$, 
+  la función de green será $G(x,y) eq Phi(y-x) - Phi(abs(x) (y-tilde(x)))$, con lo que la solución se representa por
+  $
+    u(x) eq (1-abs(x)^2)/(n alpha(n)) integral_(partial B(0, 1)) (g(y))/(abs(x-y)^n) dif S(y)
+  $
+
++ *Solución para $B(0, r)$:* Se define 
+  $ u_r (x) = (r^2-abs(x)^2)/(n alpha(n) r) integral_(partial B(0, r)) g(y)/(abs(x-y)^n) dif S(y) $
+  Entonces $u_r$ es armónica en $B(0, r)$ y $lim_(x -> x_0 \ x in B_0 (0,r)) u_r (x) = g(x_0)$ para $x_0 in partial B(0,r)$
+
 
 = Ecuación de Calor:
 
 = Ecuación de Onda:
++ Fórmula de D'Alambert ($U = RR^n$): $u(x; r, t)= 1/2 [g(x + t) - g(x - t)] + 1/2 integral_(x - t)^(x + t) h(y) dif y$
 
-+ *Fórmula de D'Alambert* ($U = RR$): $u(x; r, t)= 1/2 [g(x + t) - g(x - t)] + 1/2 integral_(x - t)^(x + t) h(y) dif y$
++ Medias Esféricas: $U(r, t; x) = integral.dash_(partial B(x, r)) u(y, t) dif y$, $U_(t t) - U_(r r) - (n-1)/r U_r = 0$ s.a. $U = G, thin U = H$ en $RR_+ times {t = 0}$
 
-+ *Medias Esféricas:* $U(r, t; x) = integral.dash_(partial B(x, r)) u(y, t) dif y$, $U_(t t) - U_(r r) - (n-1)/r U_r = 0$ s.a. $U = G, thin U = H$ en $RR_+ times {t = 0}$
++ Fórmula de Kirchhoff: $u(x, t) = integral.dash_(partial B(x, t)) t h(y) + g(y) + D g(y) dot (y - x) dif S(y)$, válida sólo para $n=3$.
 
-+ *Fórmula de Kirchhoff:* $u(x, t) = integral.dash_(partial B(x, t)) t h(y) + g(y) + D g(y) dot (y - x) dif S(y)$, válida sólo para $n=3$.
++ Fórmula de Poisson 2D: $u(x, t) = 1/2 integral.dash_(B(x, t)) (t g(y) + t^2 h(y) + t D g(y) dot (y - x))/(t^2 - abs(y - x)^2)^(1/2) dif S(y)$
 
-+ *Fórmula de Poisson 2D:* $u(x, t) = 1/2 integral.dash_(B(x, t)) (t g(y) + t^2 h(y) + t D g(y) dot (y - x))/(t^2 - abs(y - x)^2)^(1/2) dif S(y)$
++ Fórmulas de Poisson 3D: $u(x, t) = partial_t (t integral.dash_(partial B(x, t)) g dif S) + 1/(2r) integral.dash_(partial B(x, t)) h(y) dif S(y)$$ = integral.dash_(partial B(x, t)) t h(y) + g(y) + D g(y) dot (y - x) dif S(y)$
 
-+ *Fórmulas de Poisson 3D:* $u(x, t) = partial_t (t integral.dash_(partial B(x, t)) g dif S) + 1/(2r) integral.dash_(partial B(x, t)) h(y) dif S(y)$$ = integral.dash_(partial B(x, t)) t h(y) + g(y) + D g(y) dot (y - x) dif S(y)$
-
-+ *Solución homogénea general $n$ impar:*
++ Solución homogénea general $n$ impar: 
   $
     u(x, t) = 1/(gamma_n) [partial_t (1/t partial_t)^((n-3)/2) (t^(n-2) integral.dash_(partial B(x, t)) g dif S) + (1/t partial_t)^((n-3)/2) (t^(n-2) integral.dash_(partial B(x, t)) h dif S) ], \ gamma_n = 1 dot 3 dot 5 dot dot dot (n-2)
   $
-
-+ *Solución homogénea general $n$ par:*
++ Solución homogénea general $n$ par:
   $
     u(x, t) = 1/gamma_n [ partial_t (1/t partial_t)^((n-2)/2) (t^n integral.dash_(B(x, t)) g(y)/(t^2 - abs(y - x)^2)^(1/2) dif y) + (1/t partial_t)^((n-2)/2) (t^n integral.dash_(B(x, t)) h(y)/(t^2 - abs(y - x)^2)^(1/2) dif y) ], \ gamma_n = 2 dot 4 dot 6 dot dot dot n
   $
-
-+ *Solución no-homogénea:* $u(x, t) = integral_0^t u(x, t; s) dif s$, donde para $t >= s$, $u_(t t)(dot; s) - Delta u (dot; s)= 0,$ s.a. $u( dot ; s) = 0, thick u_t ( dot ; s) = f(dot, s)$ en $t = s$
++ Solución no-homogénea: $u(x, t) = integral_0^t u(x, t; s) dif s$, donde para $t >= s$, $u_(t t)(dot; s) - Delta u (dot; s)= 0,$ s.a. $u( dot ; s) = 0, thick u_t ( dot ; s) = f(dot, s)$ en $t = s$
   La solución general se obtiene sumando homogénea + inhomogenea
 
-+ *Energía:* $E(t) = 1/2 integral_(U) (u_t^2 + |D u|^2) dif x$.
++ Energía: $E(t) = 1/2 integral_(U) (u_t^2 + |D u|^2) dif x$.
   $dot(E) = integral_U u_t (u_(t t) - Delta u) dif x + integral_(partial U) u_t D u dot nu dif S$
 
-= Espacios de Sobolev: ($Omega subset RR^n$ abierto)
-
+= Espacios de Sobolev:
 + *Derivada débil:* $v = D^alpha u iff forall phi in C^oo_c (Omega), integral_Omega u D^alpha phi dif x = (-1)^(abs(alpha)) integral_Omega v phi dif x$
 
 + $W^(k, p) (Omega) := {u in L^p (Omega) | forall abs(alpha) <= k, D^alpha u in L^p (Omega) "existe en el sentido Débil" }$
@@ -163,6 +265,5 @@ $
     - Si *$Omega$ es acotado y $partial Omega$ es $C^1$*:
 
       $norm(u^*)_(C^(0, gamma) (overline(Omega))) <= C norm(u)_(W^(1, p) (U))$ donde $gamma = 1 - n/p$ y $u^* = u$ c.t.p.
-
 
 = Aplicaciones a EDP:
