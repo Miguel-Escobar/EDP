@@ -85,9 +85,38 @@ $
 
 + Sea $(T_n)_(n in NN) subset.eq D'(Omega)$ tal que $lim_(n -> oo) innerproduct(T_n, phi.alt)$ existe para toda $phi.alt$ test, Definimos: $innerproduct(T, phi.alt) colon.eq lim_(n -> oo) innerproduct(T_n, phi.alt)$, entonces $T in D'(Omega)$ y $partial^alpha T_n xarrow(D'(Omega)) partial^alpha T$
 
++ *Anulación en distribuciones:*
+  Si $w$ es abierto en $Omega$, decimos que $T$ se anula en $w$ si $forall phi in D(w), innerproduct(T, phi) = 0$
+ 
 + *Convolución de Distribuciones*
 
++ *Soporte de una distribución:* Definimos el soporte de una distribución $T$ como el complemento del siguiente conjunto
+  $
+    A_T colon.eq union.big_(w "abierto" \ T "se anula en" w) w
+  $
 
++ *Distribucion de soporte compacto:* $T in D'(Omega)$ tiene soporte compacto ssi se puede extender a $cal(E) (Omega)$ como funcional lineal continuo. Es decir $cal(E)'(Omega)$ son las distribuciones de soporte compacto.  
+
++ Si $T in cal(E)'(Omega)$ tiene soporte ${x_0}$ entonces existen $N in NN$, $(C_alpha)_(abs(alpha) lt.eq N)$ tales que.
+  $
+    T eq sum_(abs(alpha) lt.eq N) C_alpha D^alpha delta_(x_0)
+  $
+
++ Si $"Supp" T = K$ compacto en $Omega$, entonces $forall V subset.eq Omega$ abierto $V subset K$, existen funciones continuas $(f_alpha)_(abs(alpha) lt.eq N)$ tales que
+  $
+    T eq sum_(abs(alpha) lt.eq N) D^alpha_x f_alpha
+  $
+
++ *Convolución de distribuciones:* Si $T_1 in D'(Omega), T_2 in cal(E)'$, se define $T_1 * T_2 in D'(Omega)$ como 
+  $
+    innerproduct(T_1 * T_2, phi) colon.eq innerproduct(T_1 (x), innerproduct(T_2 (y), phi(x+y))_y)_x
+  $
+
++ *Propiedades de la convolución de distribuciones:*
+  - Si $T_1, T_2 in cal(E)'(Omega)$, entonces $T_1 * T_2 in cal(E)'(Omega)$
+  - $partial^alpha (T_1 * T_2) eq partial^alpha T_1 * T_2 = T_1 * partial^alpha T_2$
+  - Si $T in D'(Omega)$, entonces $T*delta_0 = delta_0 * T = T$
+  - Si $T_1 in S', T_2 in cal(E)'$ entonces $ cal(F) (T_1*T_2) eq (2 pi)^(d"/"2) underbrace(hat(T_1), in S') underbrace(hat(T_2), in C^oo) $
 = Transformada de Fourier:
 
 #definición[Transformada en $L^1$][
