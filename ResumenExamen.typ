@@ -13,21 +13,17 @@
 
 
 #set math.equation(numbering: none)
-#show math.equation.where(block: false): box
+// #show math.equation.where(block: false): box
 #set par(justify: true)
 #set table(stroke: tablecolor)
 
 = Cálculo:
 + *Teorema Gauss-Green:* 
-  - $integral_U u_(x_i) dif x &eq integral_(partial U) u nu^i dif S quad (i eq 1,dots,n)$
-  - $integral_U div bold(u) dif x &eq integral_(partial U) bold(u) dot nu dif S$
+  - $integral_U u_(x_i) dif x &eq integral_(partial U) u nu^i dif S quad (i eq 1,dots,n)$ o equivalentemente, $integral_U div bold(u) dif x &eq integral_(partial U) bold(u) dot nu dif S$
 
 + *Integración por partes:* $integral_U u_(x_i) v dif x = - integral_U u v_(x_i) dif x + integral_(partial U) u v nu^i dif S quad (i = 1,dots, n)$
 
-+ *Formulas de Green:*
-  - $integral_U laplace u dif x &= integral_(partial U) (partial u)/(partial nu) dif S$
-  - $integral_U (u laplace v - v laplace u) dif x &= integral_(partial U) (u (partial v)/(partial nu) - v (partial u)/(partial nu)) dif S$ 
-  - $integral_U D v dot D u dif x &= -integral_U u laplace v dif x + integral_(partial U) (partial v)/(partial nu) u dif S$
++ *Formulas de Green:* $integral_U laplace u dif x &= integral_(partial U) (partial u)/(partial nu) dif S$, $integral_U (u laplace v - v laplace u) dif x &= integral_(partial U) (u (partial v)/(partial nu) - v (partial u)/(partial nu)) dif S$, \ $integral_U D v dot D u dif x &= -integral_U u laplace v dif x + integral_(partial U) (partial v)/(partial nu) u dif S$
 
 + *Coordenadas polares:*
   - $integral_(RR^n) f dif x = integral_0^oo (integral_(partial B(x_0, r))f dif S) dif r$
@@ -41,10 +37,7 @@
   - Si $f in C(U)$, entonces $f^epsilon -> f$ uniforme en compactos
   - Si $1 lt.eq p lt oo$ y $f in L^p_"loc" (U)$, entonces $f^epsilon xarrow(L^p_"loc" (U)) f$
 
-+ *Volúmenes de esferas:* sea $alpha (n)$ el volumen de la esfera unitaria en $RR^n$.
-$
-  abs(partial B(0, r)) &= n alpha (n) r^(n-1) \ abs(B(0, r)) &= alpha (n) r^n
-$
++ *Volúmenes de esferas:* $alpha (n)$ := Volumen de la esfera unitaria en $RR^n$. Luego $abs(partial B(0, r)) &= n alpha (n) r^(n-1)$ y $abs(B(0, r)) &= alpha (n) r^n$.
 
 = Funciones Test y Distribuciones:
 
@@ -68,18 +61,15 @@ $
 + *Caracterización del dual*
   Se llama espacio de distribuciones a $D'(Omega)$. Sea $T: C^oo_c (Omega) -> RR$ lineal, LSSE:
   - $T in D'(Omega)$
-  - Para cada compacto $K$, existen $N(K) gt.eq 0$ y $C(K) gt 0$ tal que $ abs(innerproduct(T, phi.alt)) lt.eq C norm(phi.alt)_N $
+  - Para cada compacto $K$, existen $N(K) gt.eq 0$ y $C(K) gt 0$ tal que $abs(innerproduct(T, phi.alt)) lt.eq C norm(phi.alt)_N$
   Si existe $N$ que no depende del compacto, se dice que el menor de ellos es el orden de $T$.
 
 + *Derivada en distribuciones*
   $innerproduct(D^alpha T, phi) colon.eq (-1)^abs(alpha) innerproduct(T, D^alpha phi)$
 
 
-+ Sea *$T:D(Omega) -> Y$ lineal*, son equivalentes:
-  - $T$ es continuo
-  - $T$ es acotado
-  - $forall phi.alt_n -> 0$ en $D(Omega)$, $T phi.alt_n ->  0$ en $Y$.
-  - $T|_(D_k (Omega))$ es continuo para todo $K$
++ Sea $T:D(Omega) -> Y$ lineal. Entonces:
+ $T$ es continuo $iff$ $T$ es acotado $iff$ $forall phi.alt_n -> 0$ en $D(Omega)$ $iff$ $T phi.alt_n ->  0$ en $Y$ $iff$ $T|_(D_k (Omega))$ es continuo para todo $K$.
 
 + Si $f in C^oo (Omega)$ y $T in D'(Omega)$, definimos $innerproduct(f T, phi.alt) colon.eq innerproduct(T, f phi.alt)$
 
@@ -88,42 +78,26 @@ $
 + *Anulación en distribuciones:*
   Si $w$ es abierto en $Omega$, decimos que $T$ se anula en $w$ si $forall phi in D(w), innerproduct(T, phi) = 0$
  
-+ *Convolución de Distribuciones*
++ *Soporte de una distribución:* Definimos el soporte de una distribución $T$ como el *complemento* de $A_T colon.eq union.big_(w "abierto" \ T "se anula en" w) w$
 
-+ *Soporte de una distribución:* Definimos el soporte de una distribución $T$ como el complemento del siguiente conjunto
-  $
-    A_T colon.eq union.big_(w "abierto" \ T "se anula en" w) w
-  $
-
-+ *Distribucion de soporte compacto:* $T in D'(Omega)$ tiene soporte compacto ssi se puede extender a $cal(E) (Omega)$ como funcional lineal continuo. Es decir $cal(E)'(Omega)$ son las distribuciones de soporte compacto.  
++ *Distribucion de soporte compacto:* $cal(E)'(Omega)$ son las distribuciones de soporte compacto.  
 
 + Si $T in cal(E)'(Omega)$ tiene soporte ${x_0}$ entonces existen $N in NN$, $(C_alpha)_(abs(alpha) lt.eq N)$ tales que.
-  $
-    T eq sum_(abs(alpha) lt.eq N) C_alpha D^alpha delta_(x_0)
-  $
+  $T eq sum_(abs(alpha) lt.eq N) C_alpha D^alpha delta_(x_0)$
 
 + Si $"Supp" T = K$ compacto en $Omega$, entonces $forall V subset.eq Omega$ abierto $V subset K$, existen funciones continuas $(f_alpha)_(abs(alpha) lt.eq N)$ tales que
-  $
-    T eq sum_(abs(alpha) lt.eq N) D^alpha_x f_alpha
-  $
+  $T eq sum_(abs(alpha) lt.eq N) D^alpha_x f_alpha$
 
 + *Convolución de distribuciones:* Si $T_1 in D'(Omega), T_2 in cal(E)'$, se define $T_1 * T_2 in D'(Omega)$ como 
-  $
-    innerproduct(T_1 * T_2, phi) colon.eq innerproduct(T_1 (x), innerproduct(T_2 (y), phi(x+y))_y)_x
-  $
+  $innerproduct(T_1 * T_2, phi) colon.eq innerproduct(T_1 (x), innerproduct(T_2 (y), phi(x+y))_y)_x$
 
 + *Propiedades de la convolución de distribuciones:*
   - Si $T_1, T_2 in cal(E)'(Omega)$, entonces $T_1 * T_2 in cal(E)'(Omega)$
   - $partial^alpha (T_1 * T_2) eq partial^alpha T_1 * T_2 = T_1 * partial^alpha T_2$
   - Si $T in D'(Omega)$, entonces $T*delta_0 = delta_0 * T = T$
-  - Si $T_1 in S', T_2 in cal(E)'$ entonces $ cal(F) (T_1*T_2) eq (2 pi)^(d"/"2) underbrace(hat(T_1), in S') underbrace(hat(T_2), in C^oo) $
+  - Si $T_1 in S', T_2 in cal(E)'$ entonces: $cal(F) (T_1*T_2) eq (2 pi)^(d"/"2) underbrace(hat(T_1), in S') underbrace(hat(T_2), in C^oo)$
 = Transformada de Fourier:
-
-#definición[Transformada en $L^1$][
-  Para $f in L^1 (RR^n)$, definimos la transformada de Fourier como $ 
-  && hat(f) (xi) colon.eq integral_(RR^n) f(x) e^(-2pi i x dot xi) dif x
-  $
-]
++ Para $f in L^1 (RR^n)$, definimos la transformada de Fourier como $hat(f) (xi) colon.eq integral_(RR^n) f(x) e^(-2pi i x dot xi) dif x$
 
 
 
@@ -160,7 +134,7 @@ $
   Se deduce un principio del mínimo, ya que $-u$ es armónica también.
 
 + *Unicidad:*
-  Si $g in C^0(partial U), f in C^0 (U)$ entonces a lo mas existe una solución $u in C^2 (U) sect C^0 (overline(U))$ de $- Delta u = f$ en $U$ y $u = g$ en $partial U$
+  Si $g in C^0(partial U), f in C^0 (U)$ entonces a lo mas existe una solución \ $u in C^2 (U) sect C^0 (overline(U))$ de $- Delta u = f$ en $U$ y $u = g$ en $partial U$
 
 
 + *Regularidad:*
@@ -212,13 +186,13 @@ $
   Para todo par $x,y in U$ distintos, $G(x,y) = G(y,x)$ 
 
 + *Green para el semiespacio positivo $(RR^n_+)$:*
-  Si definimos $tilde(x) = (x_1, x_2, dots, -x_n)$ entonces la función de Green para el semiespacio positivo es $G(x,y) = Phi(y-x) - Phi(y-tilde(x))$ para $x,y in RR^n_+$. Por lo que la representación de la solución es 
+  $tilde(x) := (x_1, x_2, dots, -x_n)$, entonces $G(x,y) = Phi(y-x) - Phi(y-tilde(x))$ para $x,y in RR^n_+$. Por lo que la solución es 
   $
     u(x) = (2x_n)/(n alpha(n)) integral_(partial RR^n_+) (g(y))/(abs(x-y)^n) dif y
   $
 
-+ *Green para la bola unitaria:* Si $x in RR^n - {0}$, definimos $tilde(x) = x/abs(x)^2$, 
-  la función de green será $G(x,y) eq Phi(y-x) - Phi(abs(x) (y-tilde(x)))$, con lo que la solución se representa por
++ *Green para la bola unitaria:* Si $x in RR^n - {0}$, $tilde(x) := x/abs(x)^2$, 
+  luego $G(x,y) = Phi(y-x) - Phi(abs(x) (y-tilde(x)))$, con lo que la solución es:
   $
     u(x) eq (1-abs(x)^2)/(n alpha(n)) integral_(partial B(0, 1)) (g(y))/(abs(x-y)^n) dif S(y)
   $
@@ -280,36 +254,40 @@ $
 
   - *Caso $1 <= p < n$*: Definimos $p^* = (n p)/(n - p)$
 
-    - *En $RR^n$*: $forall u in C^1_c (RR^n)$, $norm(u)_(L^(p^*) (RR^n)) <= C norm(D u)_(L^p (RR^n))$.
+    - (Gagliardo-Niremberg-Sobolev) *En $RR^n$*: $forall u in C^1_c (RR^n)$, $norm(u)_(L^(p^*) (RR^n)) <= C norm(D u)_(L^p (RR^n))$.
 
     - $Omega$ *acotado y frontera suave*: $1 <= p < n thick implies exists C > 0$ tal que $forall u in W^(1, p) (Omega), norm(u)_(L^p (Omega)) <= C norm(u)_(W^(1, p) (Omega))$.
 
-    - $Omega$ *acotado*: $forall u in W^(1, p)_0 (Omega), forall q in [1, p^*], norm(u)_(L^q (Omega)) <= C norm(D u)_(L^p (Omega))$
+    - (Poincaré) $Omega$ *acotado*: $forall u in W^(1, p)_0 (Omega), forall q in [1, p^*], norm(u)_(L^q (Omega)) <= C norm(D u)_(L^p (Omega))$
   
 
   - *Caso $n < p <= oo$:* Aquí, las sobolev son _Hölder continuas_ (identificable con continuas).
 
-    - *Holder*: $u in C^(k, gamma) (overline(Omega)) iff norm(u)_(C^(k, gamma) (overline(Omega))) := sum_(abs(alpha) <= k) sup_(x in Omega) abs(D^alpha u (x)) + sum_(abs(alpha) = k) sup_( x, y in U \ (x != y)) {abs(u(y) - u(x))/abs(y - x)^gamma}$
+    - Espacio de Hölder: 
+    $u in C^(k, gamma) (overline(Omega)) iff norm(u)_(C^(k, gamma) (overline(Omega))) := sum_(abs(alpha) <= k) sup_(x in Omega) abs(D^alpha u (x)) + sum_(abs(alpha) = k) sup_( x, y in U \ (x != y)) {abs(u(y) - u(x))/abs(y - x)^gamma}$
 
-    - $forall u in C^1 (RR^n), gamma := 1 - n/p, norm(u)_(C^(0, gamma) (RR^n)) <= C norm(u)_(W^(1, p) (RR^n))$
+    - (Morrisey) $forall u in C^1 (RR^n), gamma := 1 - n/p, norm(u)_(C^(0, gamma) (RR^n)) <= C norm(u)_(W^(1, p) (RR^n))$
 
-    - Si *$Omega$ es acotado y $partial Omega$ es $C^1$*:
-
-      $norm(u^*)_(C^(0, gamma) (overline(Omega))) <= C norm(u)_(W^(1, p) (U))$ donde $gamma = 1 - n/p$ y $u^* = u$ c.t.p.
-
+    - (Morrisey 2) Si *$Omega$ es acotado y $partial Omega$ es $C^1$*: $norm(u^*)_(C^(0, gamma) (overline(Omega))) <= C norm(u)_(W^(1, p) (U))$ donde \ $gamma = 1 - n/p$ y $u^* = u$ c.t.p. Esto permite identificar $u$ sobolev con funciones continuas.
++ *Inclusiones compactas* (Rellich-Kondrachov): 
 = Aplicaciones a EDP:
 
 + *Operador Diferencial*: Sea $Omega$ acotado y borde $C^1$, $A (x) = (a_(i j) (x)), thick b(x) = (b_j (x))$, y $c(x)$ tales que $a_(i j), b_j, c in L^oo (Omega)$, definimos los operadores diferenciales en forma: _(notación: índices repetidos $implies$ suma con el índice de 1 a la dimensión $d$)_
   - *De divergencia*: $L u = - partial_i (a_(i j) (x) partial_j u) + b_j (x) partial_j u + c(x) u$
   - *General*: $L u = - a_(i j)(x) partial_i partial_j u + b_j (x) partial_j u + c(x) u$
-*obs*: Estas formas son equivalentes si $a_(i j) in C^1 (Omega)$ 
+  *obs*: Estas formas son equivalentes si $a_(i j) in C^1 (Omega)$ 
 
 + *Elipticidad*: $A(x) = (a_(i j)(x))$ se dice *uniformemente elíptico* (*acotado*) si $forall chi in RR^d , angle.l chi, A chi angle.r >= (<=) C_0 angle.l chi, chi angle.r$. Habitualmente se trabaja con $A$ simétrica.
 
 + *Formulación Variacional*: $u$ se dirá _solución débil_ del problema $L u = f$ si $forall v$ en un espacio adecuado (ej: $u in H^1 (Omega), v in H^1_0 (Omega)$) $B[u, v] = angle.l f , v angle.r$, donde $B$ es una forma bilineal obtenida al integrar por partes el problema original, y $f$ es promovido a un elemento del dual del espacio de $v$. Los detalles dependen del problema y las condiciones de borde en particular.
 
-+ *Teoremas útiles*:
-  -  *Lax-Milgram*: Sean $u, v in H$, con $H$ un hilbert. El problema *$B[u, v] = angle.l f , v angle.r$ tiene solución única* si existen $alpha, beta > 0$ tal que:
-    - $B$ continua: $abs(B[u, v]) <= alpha norm(u) norm(v)$ 
-    - $B$ coerciva: $beta (u, u) <= B[u, u]$
-  - *Teorema de Representación de Riesz*: A veces $B$ además es simétrica. En este caso es más simple definir $((u , v))$, mostrar que es nuevo producto interno, y así el teorema de representación de Riesz nos da la solución.
++  *Lax-Milgram*: Sean $u, v in H$, con $H$ un hilbert. El problema *$B[u, v] = angle.l f , v angle.r$ tiene solución única* si existen $alpha, beta > 0$ tal que:
+  - $B$ continua: $abs(B[u, v]) <= alpha norm(u) norm(v)$ 
+  - $B$ coerciva: $beta (u, u) <= B[u, u]$
++ *Teorema de Representación de Riesz*: A veces $B$ además es simétrica. En este caso es más simple definir $((u , v)) := B[u, v]$, mostrar que es nuevo producto interno, y así el teorema de representación de Riesz nos garantiza existencia de solución.
++ *Alternativa de Fredholm*: Sea el problema primal con $L$ op diferencial de divergencia: $L u = f, u|_(partial Omega) = 0$. El operador adjunto de $L$ se puede escribir como $L^* v = -partial_i (a_(i j) partial_j v) - b_i partial_i v + (c - (partial_i b_i)) v$. La forma bilineal adjunta se define $B^* [u, v] := B[v, u]$. El problema débil adjunto consiste en encontrar $v in H_0^1 (Omega)$ tal que $forall u in H^1_0 (Omega), B^* [v, u] = (f, u)$. Con esto, *sólo una* de las siguientes es cierta:
+  + Existe solución débil única del problema primal para cualquier \ $f in L^2 (Omega)$.
+  + Existe una solución débil no nula del problema homogéneo $L u = u$, \ $u|_(partial Omega) = 0$. En este caso, la dimension de $"Ker"(L)$ es igual a la de $"Ker" (L^*)$ y finita.
+  + Existe solución débil única del problema primal ssi $f in "Ker"(L^*)^bold(perp)$
+
+
