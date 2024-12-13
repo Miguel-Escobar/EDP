@@ -47,7 +47,7 @@
 
 == Ideas informales
 
-Lo que nos dicen las condiciones de Von Neumann es que no hay crecimiento en los bordes de la región $Omega$. Por otro lado, la ecuación de Poisson es típica de cosas donde tenemo "fuentes" de campo, nos dice que el gradiente de $u$ tiene como "fuente" la distribución $f$. En el caso de electrodinámica, la ley de Gauss es un ejemplo, como formulación equivalente de la ecuación de Poisson para el potencial. También  Ahora cómo ayuda esto a Huachipato, no lo tengo muy claro. Sigamos el tip de la Jessica, y empecemos a hacer integraciones por partes con una función test.
+Lo que nos dicen las condiciones de Von Neumann es que no hay crecimiento en los bordes de la región $Omega$. Por otro lado, la ecuación de Poisson es típica de cosas donde tenemo "fuentes" de campo, nos dice que el gradiente de $u$ tiene como "fuente" la distribución $f$. En el caso de electrodinámica, la ley de Gauss es un ejemplo, como formulación equivalente de la ecuación de Poisson para el potencial. Ahora cómo ayuda esto a Huachipato, no lo tengo muy claro. Sigamos el tip de la Jessica, y empecemos a hacer integraciones por partes con una función test.
 
 == Buscando la forma bilineal
 
