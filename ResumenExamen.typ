@@ -173,6 +173,56 @@
 
 = Ecuación de Calor:
 
++ *Ecuación del calor:* Se llama ecuación del calor a la ecuación $u_t - laplace u = f$ 
+
++ *Solución fundamental del calor:*
+  $
+    Phi(x, t) colon.eq cases(
+      1/((4 pi t)^(n/2)) e^(-abs(x)^2/(4t)) &quad t>0,
+      0 &quad t<0
+    )
+  $
+  Para $t>0$ fijo se cumple $integral_(RR^n) Phi(x, t) dif x = 1$
+
++ *Solución al problema con condición inicial:*
+  $
+    u(x, t) = integral_(RR^n) g(y) Phi(x-y, t) dif y = 1/(4 pi t)^(n"/"2) integral e^(- (abs(x-y)^2)/(4t)) g(y) dif y 
+  $
+  soluciona el problema $u_t - laplace u = 0$ en $RR^n_+ times (0, oo)$, $u = g$ en $RR^n_+ times {t = 0}$
+
++ *Solución al caso no homogeneo:* La solución al problema
+  $
+    cases(
+      u_t - laplace u = f &quad "en" RR^n_+ times (0, oo),
+      u = 0 &quad "en" RR^n_+ times {t = 0}
+    )
+  $
+  está dada por $u(x,t) = integral_0^t integral_(RR^n) Phi(x-y, t-s)f(y,s) dif y dif s$
+
++ *Cilindro parabólico:* Dado un abierto $Omega$ acotado y $T$ un tiempo fijo, se define el cilindro parabólico como $U_T colon.eq U times (0, T]$ y la frontera parabólica como $Gamma_T = overline(U)_T - U_T$
+
++ *Bola de calor:* Dados $x in RR^n, t in RR, r>0$ se define
+  $
+    E(x, t, r) colon.eq {(y, s) in RR^(n+1) | s lt.eq t, Phi(x-y, t-s) gt.eq 1/(r^n)}
+  $
+
++ *Fórmula de la media:* Si $u in C_1^2 (U_T)$ soluciona calor, entonces
+  $ u(x,t) eq 1/(4 r^n) integral integral_(E(x,t,r)) u(y,s) abs(x-y)^2/(t-s)^2 dif y dif s $
+
++ *Principio del máximo:* Si $u in C^2_1 (U_T) sect C(overline(U)_T)$ soluciona calor, entonces $max_(overline(U)_T) u = max_(Gamma_T) u$. Y si $U$ es conexo y existe $(x_0,t_0) in U_T$ tal que $u(x_0,t_0) = max_(overline(U)_T) u$ entonces $u$ es constante en $overline(U)_(t_0)$
+
++ *Unicidad:* Si $g in C(Gamma_T), f in C(U_T)$, entonces existe a lo mas una solución del calor no homogeneo con condición inicial.
+
++ *Principio del máximo para problema de Cauchy:* Si $u in C^2_1 (RR^n times (0, T]) sect C(RR^n times [0, T])$ resuelve $u_t - laplace u = 0$ en $RR^n times (0, T)$ con condición inicial $u = g$ y es tal que $u(x, t) lt.eq A e^(a abs(x)^2)$ para $A, a gt 0$, entonces $sup_(RR^n times [0, T]) u = sup_(RR^n) g$ 
+
++ *Unicidad para el PC:* Bajo las mismas hipótesis del teorema anterior, se cumple que el problema de Cauchy tiene a lo mas una solución.
+
++ *Suavidad:* Si $u in C^2_1 (U_T)$ resuelve calor, entonces $u in C^oo (U_T)$
+
++ *Estimadores para las derivadas:* Para cada par de enteros $k,l$ existe $C_(k,l)$ tal que
+  $
+    max_(C(x, t, r"/"2)) abs(D^k_t D^l_x u) lt.eq C_(k,l)/r^(k+2l+n+2) norm(u)_(L^1 (C(x, t, r)))
+  $
 = Ecuación de Onda:
 + Fórmula de D'Alambert ($U = RR^n$): $u(x; r, t)= 1/2 [g(x + t) - g(x - t)] + 1/2 integral_(x - t)^(x + t) h(y) dif y$
 + Medias Esféricas: $U(r, t; x) = integral.dash_(partial B(x, r)) u(y, t) dif y$, $U_(t t) - U_(r r) - (n-1)/r U_r = 0$ s.a. $U = G, thin U = H$ en $RR_+ times {t = 0}$
