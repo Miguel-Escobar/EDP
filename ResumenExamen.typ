@@ -87,6 +87,8 @@ $
 
 + *Anulación en distribuciones:*
   Si $w$ es abierto en $Omega$, decimos que $T$ se anula en $w$ si $forall phi in D(w), innerproduct(T, phi) = 0$
+ 
++ *Convolución de Distribuciones*
 
 + *Soporte de una distribución:* Definimos el soporte de una distribución $T$ como el complemento del siguiente conjunto
   $
@@ -177,7 +179,7 @@ $
   Si $f in C^2_c (RR^n), n gt.eq 3$. Entonces cualquier solución acotada de $-laplace u eq f$ en $RR^n$ es de la forma $u = Phi * f + c$ con $c in RR$.
 
 + *Desigualdad de Harnack:*
-  Para cada abierto conexo $V subset.eq K subset.eq U$ con $K$ compacto, existe $C(V)gt 0$ tal que $sup_V u lt.eq C inf_V u$ para toda $u$ armónica no negativa.
+  Para cada abierto conexo $V subset subset U$, existe $C(V)gt 0$ tal que $sup_V u lt.eq C inf_V u$,  $forall u$ armónica no negativa.
   En concreto, para $x,y in V$ se cumple $1/C u(y) lt.eq u(x) lt.eq C u(y)$.
 
 + *Función de Green:*
@@ -285,7 +287,7 @@ $
     - $Omega$ *acotado*: $forall u in W^(1, p)_0 (Omega), forall q in [1, p^*], norm(u)_(L^q (Omega)) <= C norm(D u)_(L^p (Omega))$
   
 
-  - *Caso $n < p <= oo$:* Aquí, las sobolev son _Hölder continuas_ (osea identificable con continuas).
+  - *Caso $n < p <= oo$:* Aquí, las sobolev son _Hölder continuas_ (identificable con continuas).
 
     - *Holder*: $u in C^(k, gamma) (overline(Omega)) iff norm(u)_(C^(k, gamma) (overline(Omega))) := sum_(abs(alpha) <= k) sup_(x in Omega) abs(D^alpha u (x)) + sum_(abs(alpha) = k) sup_( x, y in U \ (x != y)) {abs(u(y) - u(x))/abs(y - x)^gamma}$
 
@@ -296,3 +298,18 @@ $
       $norm(u^*)_(C^(0, gamma) (overline(Omega))) <= C norm(u)_(W^(1, p) (U))$ donde $gamma = 1 - n/p$ y $u^* = u$ c.t.p.
 
 = Aplicaciones a EDP:
+
++ *Operador Diferencial*: Sea $Omega$ acotado y borde $C^1$, $A (x) = (a_(i j) (x)), thick b(x) = (b_j (x))$, y $c(x)$ tales que $a_(i j), b_j, c in L^oo (Omega)$, definimos los operadores diferenciales en forma: _(notación: índices repetidos $implies$ suma con el índice de 1 a la dimensión $d$)_
+  - *De divergencia*: $L u = - partial_i (a_(i j) (x) partial_j u) + b_j (x) partial_j u + c(x) u$
+  - *General*: $L u = - a_(i j)(x) partial_i partial_j u + b_j (x) partial_j u + c(x) u$
+*obs*: Estas formas son equivalentes si $a_(i j) in C^1 (Omega)$ 
+
++ *Elipticidad*: $A(x) = (a_(i j)(x))$ se dice *uniformemente elíptico* (*acotado*) si $forall chi in RR^d , angle.l chi, A chi angle.r >= (<=) C_0 angle.l chi, chi angle.r$. Habitualmente se trabaja con $A$ simétrica.
+
++ *Formulación Variacional*: $u$ se dirá _solución débil_ del problema $L u = f$ si $forall v$ en un espacio adecuado (ej: $u in H^1 (Omega), v in H^1_0 (Omega)$) $B[u, v] = angle.l f , v angle.r$, donde $B$ es una forma bilineal obtenida al integrar por partes el problema original, y $f$ es promovido a un elemento del dual del espacio de $v$. Los detalles dependen del problema y las condiciones de borde en particular.
+
++ *Teoremas útiles*:
+  -  *Lax-Milgram*: Sean $u, v in H$, con $H$ un hilbert. El problema *$B[u, v] = angle.l f , v angle.r$ tiene solución única* si existen $alpha, beta > 0$ tal que:
+    - $B$ continua: $abs(B[u, v]) <= alpha norm(u) norm(v)$ 
+    - $B$ coerciva: $beta (u, u) <= B[u, u]$
+  - *Teorema de Representación de Riesz*: A veces $B$ además es simétrica. En este caso es más simple definir $((u , v))$, mostrar que es nuevo producto interno, y así el teorema de representación de Riesz nos da la solución.
