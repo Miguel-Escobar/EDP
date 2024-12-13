@@ -84,13 +84,9 @@
   - $S(RR^n)$ es denso en $L^p (RR^n)$ para $1 <= p < oo$
 + *Fórmula de Parseval:* Para $f, g in L^1$, $integral_(RR^n) hat(f)(x) g(x) dif x = integral_(RR^n)  f(x) hat(g)(x) dif x$
 + *Inversión de Fourier:* Para $f, hat(f) in L^1$, $f = (hat(f))^or := integral_(RR^n) hat(f) e^(2 pi i x xi) dif x$ c.t.p.
-
 + *Plancherel*: Podemos extender la transformada a $f in L^2 (RR^n)$, donde $norm(f)_(L^2) = norm(hat(f))_(L^2)$ y $cal(F)_(L^2): L^2 arrow L^2$.
-
 + *Dist. Temperadas*: Llamamos al dual $S'(RR^n)$ el espacio de dist. temperadas.
 + *Fourier en $S'$*: Para $T in S'$, $hat(T)$ se define por su acción $angle.l hat(T), phi angle.r = angle.l T, hat(phi) angle.r$. La transformada es una operación continua en $S'$.
-
-
 
 = Ecuación de Laplace:
 + *Ecuación de Poisson:* 
@@ -174,7 +170,6 @@
 = Ecuación de Calor:
 
 + *Ecuación del calor:* Se llama ecuación del calor a la ecuación $u_t - laplace u = f$ 
-
 + *Solución fundamental del calor:*
   $
     Phi(x, t) colon.eq cases(
@@ -183,13 +178,11 @@
     )
   $
   Para $t>0$ fijo se cumple $integral_(RR^n) Phi(x, t) dif x = 1$
-
 + *Solución al problema con condición inicial:*
   $
     u(x, t) = integral_(RR^n) g(y) Phi(x-y, t) dif y = 1/(4 pi t)^(n"/"2) integral e^(- (abs(x-y)^2)/(4t)) g(y) dif y 
   $
   soluciona el problema $u_t - laplace u = 0$ en $RR^n_+ times (0, oo)$, $u = g$ en $RR^n_+ times {t = 0}$
-
 + *Solución al caso no homogeneo:* La solución al problema
   $
     cases(
@@ -198,27 +191,18 @@
     )
   $
   está dada por $u(x,t) = integral_0^t integral_(RR^n) Phi(x-y, t-s)f(y,s) dif y dif s$
-
 + *Cilindro parabólico:* Dado un abierto $Omega$ acotado y $T$ un tiempo fijo, se define el cilindro parabólico como $U_T colon.eq U times (0, T]$ y la frontera parabólica como $Gamma_T = overline(U)_T - U_T$
-
 + *Bola de calor:* Dados $x in RR^n, t in RR, r>0$ se define
   $
     E(x, t, r) colon.eq {(y, s) in RR^(n+1) | s lt.eq t, Phi(x-y, t-s) gt.eq 1/(r^n)}
   $
-
 + *Fórmula de la media:* Si $u in C_1^2 (U_T)$ soluciona calor, entonces
   $ u(x,t) eq 1/(4 r^n) integral integral_(E(x,t,r)) u(y,s) abs(x-y)^2/(t-s)^2 dif y dif s $
-
 + *Principio del máximo:* Si $u in C^2_1 (U_T) sect C(overline(U)_T)$ soluciona calor, entonces $max_(overline(U)_T) u = max_(Gamma_T) u$. Y si $U$ es conexo y existe $(x_0,t_0) in U_T$ tal que $u(x_0,t_0) = max_(overline(U)_T) u$ entonces $u$ es constante en $overline(U)_(t_0)$
-
 + *Unicidad:* Si $g in C(Gamma_T), f in C(U_T)$, entonces existe a lo mas una solución del calor no homogeneo con condición inicial.
-
 + *Principio del máximo para problema de Cauchy:* Si $u in C^2_1 (RR^n times (0, T]) sect C(RR^n times [0, T])$ resuelve $u_t - laplace u = 0$ en $RR^n times (0, T)$ con condición inicial $u = g$ y es tal que $u(x, t) lt.eq A e^(a abs(x)^2)$ para $A, a gt 0$, entonces $sup_(RR^n times [0, T]) u = sup_(RR^n) g$ 
-
 + *Unicidad para el PC:* Bajo las mismas hipótesis del teorema anterior, se cumple que el problema de Cauchy tiene a lo mas una solución.
-
 + *Suavidad:* Si $u in C^2_1 (U_T)$ resuelve calor, entonces $u in C^oo (U_T)$
-
 + *Estimadores para las derivadas:* Para cada par de enteros $k,l$ existe $C_(k,l)$ tal que
   $
     max_(C(x, t, r"/"2)) abs(D^k_t D^l_x u) lt.eq C_(k,l)/r^(k+2l+n+2) norm(u)_(L^1 (C(x, t, r)))
@@ -273,7 +257,7 @@
   - *De divergencia*: $L u = - partial_i (a_(i j) (x) partial_j u) + b_j (x) partial_j u + c(x) u$
   - *General*: $L u = - a_(i j)(x) partial_i partial_j u + b_j (x) partial_j u + c(x) u$
   *obs*: Estas formas son equivalentes si $a_(i j) in C^1 (Omega)$ 
-+ *Elipticidad*: $A(x) = (a_(i j)(x))$ se dice *uniformemente elíptico* (*acotado*) si $forall chi in RR^d , angle.l chi, A chi angle.r >= (<=) C_0 angle.l chi, chi angle.r$. Habitualmente se trabaja con $A$ simétrica.
++ *Elipticidad*: $A(x) = (a_(i j)(x))$ se dice *uniformemente elíptico* (*acotado*) si $forall xi in RR^d , angle.l xi, A xi angle.r >= (<=) med C_0 angle.l xi, xi angle.r$. Habitualmente se trabaja con $A$ simétrica.
 + *Formulación Variacional*: $u$ se dirá _solución débil_ del problema $L u = f$ si $forall v$ en un espacio adecuado (ej: $u in H^1 (Omega), v in H^1_0 (Omega)$) $B[u, v] = angle.l f , v angle.r$, donde $B$ es una forma bilineal obtenida al integrar por partes el problema original, y $f$ es promovido a un elemento del dual del espacio de $v$. Los detalles dependen del problema y las condiciones de borde en particular.
 +  *Lax-Milgram*: Sean $u, v in H$, con $H$ un hilbert. El problema *$B[u, v] = angle.l f , v angle.r$ tiene solución única* si existen $alpha, beta > 0$ tal que:
   - $B$ continua: $abs(B[u, v]) <= alpha norm(u) norm(v)$ 
